@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CarStats.ie — Irish Car Registration Statistics</title>
+<meta name="description" content="Interactive dashboard of new car registrations in Ireland — by make, model, county, fuel type and more.">
+
+<!-- Google tag (gtag.js) with Consent Mode: analytics blocked until user consents -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied'
+  });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FDGVKJFFD3"></script>
+<script>
+  gtag('js', new Date());
+  gtag('config', 'G-FDGVKJFFD3');
+</script>
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="site-assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="site-assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="site-assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="site-assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="site-assets/favicon-192.png">
+
+<!-- Open Graph / social sharing preview -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="CarStats.ie — Irish Car Registration Statistics">
+<meta property="og:description" content="Interactive dashboard of new car registrations in Ireland — by make, model, county, fuel type and more.">
+<meta property="og:image" content="https://mrgenius12.github.io/carstats/site-assets/og_image.png">
+<meta property="og:url" content="https://mrgenius12.github.io/carstats/">
+
+<!-- Twitter/X card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CarStats.ie — Irish Car Registration Statistics">
+<meta name="twitter:description" content="Interactive dashboard of new car registrations in Ireland — by make, model, county, fuel type and more.">
+<meta name="twitter:image" content="https://mrgenius12.github.io/carstats/site-assets/og_image.png">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: #0f1419;
+    color: #e8eaed;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    background: #161b22;
+    border-bottom: 1px solid #2a2f38;
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo svg {
+    display: block;
+  }
+
+  nav {
+    display: flex;
+    gap: 24px;
+    font-size: 14px;
+  }
+
+  nav a {
+    color: #8b949e;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  nav a:hover {
+    color: #ffffff;
+  }
+
+  .header-divider {
+    width: 1px;
+    height: 24px;
+    background: #2a2f38;
+    margin: 0 20px;
+  }
+
+  .header-tagline {
+    flex: 1;
+    color: #8b949e;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 16px;
+  }
+
+  .dashboard-wrapper {
+    width: 100%;
+    max-width: 1400px;
+    background: #161b22;
+    border: 1px solid #2a2f38;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
+
+  .dashboard-tabs {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    padding: 14px 16px;
+    background: #161b22;
+    border-bottom: 1px solid #2a2f38;
+  }
+
+  .tab-btn {
+    background: #1c222c;
+    border: 1px solid #2a2f38;
+    color: #8b949e;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s, border-color 0.2s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+  }
+
+  .tab-btn:hover {
+    color: #c9d1d9;
+    background: #242b36;
+  }
+
+  .tab-btn.active {
+    color: #ffffff;
+    background: #1d3a6e;
+    border-color: #4f8cff;
+  }
+
+  .dashboard-frame {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    min-height: 420px;
+    max-height: 720px;
+    background: #0f1419;
+  }
+
+  .dashboard-frame iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    color: #6e7681;
+    font-size: 13px;
+    border-top: 1px solid #2a2f38;
+  }
+
+  footer a {
+    color: #6e7681;
+  }
+
+  @media (max-width: 640px) {
+    header {
+      padding: 14px 16px;
+    }
+    .header-divider {
+      display: none;
+    }
+    .header-tagline {
+      display: none;
+    }
+    nav {
+      gap: 16px;
+    }
+    .dashboard-tabs {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .tab-btn {
+      font-size: 12px;
+      padding: 9px 8px;
+    }
+    .dashboard-frame {
+      height: 60vh;
+      min-height: 380px;
+      max-height: 600px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .logo svg {
+      width: 130px;
+      height: 34px;
+    }
+    nav {
+      font-size: 13px;
+      gap: 12px;
+    }
+  }
+
+  .feedback-section {
+    width: 100%;
+    max-width: 640px;
+    margin-top: 48px;
+    background: #161b22;
+    border: 1px solid #2a2f38;
+    border-radius: 14px;
+    padding: 0;
+    text-align: center;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  }
+
+  .feedback-section-inner {
+    padding: 32px 36px 28px;
+  }
+
+  .feedback-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(79,140,255,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 20px;
+  }
+
+  .feedback-section h2 {
+    font-size: 19px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 8px;
+    letter-spacing: -0.2px;
+  }
+
+  .feedback-section p {
+    color: #8b949e;
+    font-size: 14px;
+    line-height: 1.55;
+    margin-bottom: 22px;
+    max-width: 460px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #feedback-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+  }
+
+  #feedback-form textarea,
+  #feedback-form input {
+    background: #0d1117;
+    border: 1px solid #2a2f38;
+    border-radius: 9px;
+    color: #e8eaed;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 12px 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  #feedback-form textarea::placeholder,
+  #feedback-form input::placeholder {
+    color: #5b6472;
+  }
+
+  #feedback-form textarea:focus,
+  #feedback-form input:focus {
+    outline: none;
+    border-color: #4f8cff;
+    box-shadow: 0 0 0 3px rgba(79,140,255,0.15);
+  }
+
+  #feedback-form textarea {
+    min-height: 84px;
+    resize: vertical;
+  }
+
+  .feedback-form-row {
+    display: flex;
+    gap: 10px;
+  }
+
+  .feedback-form-row input {
+    flex: 1;
+    min-width: 0;
+  }
+
+  #feedback-form button {
+    background: #4f8cff;
+    color: #ffffff;
+    border: none;
+    border-radius: 9px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 12px 22px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  #feedback-form button:hover {
+    background: #3d7ae8;
+  }
+
+  #feedback-form button:active {
+    transform: scale(0.98);
+  }
+
+  .feedback-status {
+    margin-top: 14px !important;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .feedback-status.success {
+    color: #3fb950;
+  }
+
+  .feedback-status.error {
+    color: #f85149;
+  }
+
+  @media (max-width: 480px) {
+    .feedback-form-row {
+      flex-direction: column;
+    }
+  }
+
+  .cookie-banner {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #161b22;
+    border-top: 1px solid #2a2f38;
+    padding: 16px 24px;
+    z-index: 1000;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    box-shadow: 0 -4px 16px rgba(0,0,0,0.3);
+  }
+
+  .cookie-banner p {
+    color: #c9d1d9;
+    font-size: 13px;
+    margin: 0;
+    max-width: 640px;
+  }
+
+  .cookie-banner a {
+    color: #4f8cff;
+  }
+
+  .cookie-actions {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .cookie-btn {
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 9px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid #2a2f38;
+    transition: background 0.2s;
+  }
+
+  .cookie-btn-secondary {
+    background: transparent;
+    color: #8b949e;
+  }
+
+  .cookie-btn-secondary:hover {
+    background: #1c222c;
+  }
+
+  .cookie-btn-primary {
+    background: #4f8cff;
+    color: #ffffff;
+    border-color: #4f8cff;
+  }
+
+  .cookie-btn-primary:hover {
+    background: #3d7ae8;
+  }
+
+  @media (max-width: 640px) {
+    .cookie-banner {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .cookie-actions {
+      justify-content: flex-end;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <svg width="153" height="40" viewBox="0 0 153 40" xmlns="http://www.w3.org/2000/svg">
+<g fill="#F5F7FA">
+<path transform="translate(0,29) scale(0.03,-0.03)" d="M392 704Q503 704 589.5 649.5Q676 595 715 495H578Q551 550 503.0 577.0Q455 604 392 604Q323 604 269.0 573.0Q215 542 184.5 484.0Q154 426 154 349Q154 272 184.5 214.0Q215 156 269.0 124.5Q323 93 392 93Q455 93 503.0 120.0Q551 147 578 202H715Q676 102 589.5 48.0Q503 -6 392 -6Q294 -6 213.0 39.5Q132 85 84.5 166.0Q37 247 37 349Q37 451 84.5 532.0Q132 613 213.5 658.5Q295 704 392 704Z"/>
+<path transform="translate(23.189999999999998,29) scale(0.03,-0.03)" d="M297 560Q362 560 410.5 534.5Q459 509 488 471V551H603V0H488V82Q459 43 409.0 17.0Q359 -9 295 -9Q224 -9 165.0 27.5Q106 64 71.5 129.5Q37 195 37 278Q37 361 71.5 425.0Q106 489 165.5 524.5Q225 560 297 560ZM321 461Q277 461 239.0 439.5Q201 418 177.5 376.5Q154 335 154 278Q154 221 177.5 178.0Q201 135 239.5 112.5Q278 90 321 90Q365 90 403.0 112.0Q441 134 464.5 176.5Q488 219 488 276Q488 333 464.5 375.0Q441 417 403.0 439.0Q365 461 321 461Z"/>
+<path transform="translate(43.53,29) scale(0.03,-0.03)" d="M354 560V442H325Q258 442 223.5 408.0Q189 374 189 290V0H75V551H189V471Q214 513 255.5 536.5Q297 560 354 560Z"/>
+</g>
+<g fill="#4F8CFF">
+<path transform="translate(55.05,29) scale(0.03,-0.03)" d="M58 192H180Q184 147 215.5 118.0Q247 89 304 89Q363 89 396.0 117.5Q429 146 429 191Q429 226 408.5 248.0Q388 270 357.5 282.0Q327 294 273 308Q205 326 162.5 344.5Q120 363 90.0 402.0Q60 441 60 506Q60 566 90.0 611.0Q120 656 174.0 680.0Q228 704 299 704Q400 704 464.5 653.5Q529 603 536 515H410Q407 553 374.0 580.0Q341 607 287 607Q238 607 207.0 582.0Q176 557 176 510Q176 478 195.5 457.5Q215 437 245.0 425.0Q275 413 327 399Q396 380 439.5 361.0Q483 342 513.5 302.5Q544 263 544 197Q544 144 515.5 97.0Q487 50 432.5 21.5Q378 -7 304 -7Q234 -7 178.0 17.5Q122 42 90.0 87.0Q58 132 58 192Z"/>
+<path transform="translate(73.17,29) scale(0.03,-0.03)" d="M208 458V153Q208 122 222.5 108.5Q237 95 272 95H342V0H252Q175 0 134.0 36.0Q93 72 93 153V458H28V551H93V688H208V551H342V458Z"/>
+<path transform="translate(84.33,29) scale(0.03,-0.03)" d="M297 560Q362 560 410.5 534.5Q459 509 488 471V551H603V0H488V82Q459 43 409.0 17.0Q359 -9 295 -9Q224 -9 165.0 27.5Q106 64 71.5 129.5Q37 195 37 278Q37 361 71.5 425.0Q106 489 165.5 524.5Q225 560 297 560ZM321 461Q277 461 239.0 439.5Q201 418 177.5 376.5Q154 335 154 278Q154 221 177.5 178.0Q201 135 239.5 112.5Q278 90 321 90Q365 90 403.0 112.0Q441 134 464.5 176.5Q488 219 488 276Q488 333 464.5 375.0Q441 417 403.0 439.0Q365 461 321 461Z"/>
+<path transform="translate(104.67,29) scale(0.03,-0.03)" d="M208 458V153Q208 122 222.5 108.5Q237 95 272 95H342V0H252Q175 0 134.0 36.0Q93 72 93 153V458H28V551H93V688H208V551H342V458Z"/>
+<path transform="translate(115.83,29) scale(0.03,-0.03)" d="M45 169H163Q166 134 196.5 110.5Q227 87 273 87Q321 87 347.5 105.5Q374 124 374 153Q374 184 344.5 199.0Q315 214 251 232Q189 249 150.0 265.0Q111 281 82.5 314.0Q54 347 54 401Q54 445 80.0 481.5Q106 518 154.5 539.0Q203 560 266 560Q360 560 417.5 512.5Q475 465 479 383H365Q362 420 335.0 442.0Q308 464 262 464Q217 464 193.0 447.0Q169 430 169 402Q169 380 185.0 365.0Q201 350 224.0 341.5Q247 333 292 320Q352 304 390.5 287.5Q429 271 457.0 239.0Q485 207 486 154Q486 107 460.0 70.0Q434 33 386.5 12.0Q339 -9 275 -9Q210 -9 158.5 14.5Q107 38 77.0 78.5Q47 119 45 169Z"/>
+</g>
+<g fill="#8B949E">
+<path transform="translate(131.85,29) scale(0.019,-0.019)" d="M48 66Q48 97 69.0 118.0Q90 139 121 139Q151 139 172.0 118.0Q193 97 193 66Q193 35 172.0 14.0Q151 -7 121 -7Q90 -7 69.0 14.0Q48 35 48 66Z"/>
+<path transform="translate(136.429,29) scale(0.019,-0.019)" d="M60 697Q60 728 81.0 749.0Q102 770 133 770Q163 770 184.0 749.0Q205 728 205 697Q205 666 184.0 645.0Q163 624 133 624Q102 624 81.0 645.0Q60 666 60 697ZM189 551V0H75V551Z"/>
+<path transform="translate(141.445,29) scale(0.019,-0.019)" d="M576 233H155Q160 167 204.0 127.0Q248 87 312 87Q404 87 442 164H565Q540 88 474.5 39.5Q409 -9 312 -9Q233 -9 170.5 26.5Q108 62 72.5 126.5Q37 191 37 276Q37 361 71.5 425.5Q106 490 168.5 525.0Q231 560 312 560Q390 560 451.0 526.0Q512 492 546.0 430.5Q580 369 580 289Q580 258 576 233ZM461 325Q460 388 416.0 426.0Q372 464 307 464Q248 464 206.0 426.5Q164 389 156 325Z"/>
+</g>
+</svg>
+  </div>
+  <div class="header-divider"></div>
+  <div class="header-tagline">Irish Car Registration Statistics</div>
+  <nav>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<main>
+  <div class="dashboard-wrapper" id="dashboard">
+    <div class="dashboard-tabs">
+      <button class="tab-btn active" data-src="https://datastudio.google.com/embed/reporting/58410ec8-dab4-4654-b87e-b38fde4f569b/page/tEnnC?hl=en">Registrations Over Time</button>
+      <button class="tab-btn" data-src="https://datastudio.google.com/embed/reporting/58410ec8-dab4-4654-b87e-b38fde4f569b/page/p_snryk1994d?hl=en">Monthly Trends by Year</button>
+      <button class="tab-btn" data-src="https://datastudio.google.com/embed/reporting/58410ec8-dab4-4654-b87e-b38fde4f569b/page/p_rfimzpda5d?hl=en">Cumulative Trends by Year</button>
+      <button class="tab-btn" data-src="https://datastudio.google.com/embed/reporting/58410ec8-dab4-4654-b87e-b38fde4f569b/page/p_phux3u7a5d?hl=en">Same Month by Year</button>
+      <button class="tab-btn" data-src="https://datastudio.google.com/embed/reporting/58410ec8-dab4-4654-b87e-b38fde4f569b/page/p_1r50sh8a5d?hl=en">Cumulative Month by Year</button>
+      <button class="tab-btn" data-src="https://datastudio.google.com/embed/reporting/58410ec8-dab4-4654-b87e-b38fde4f569b/page/p_uldlljlb5d?hl=en">By Make</button>
+      <button class="tab-btn" data-src="https://datastudio.google.com/embed/reporting/58410ec8-dab4-4654-b87e-b38fde4f569b/page/p_nl1691tb5d?hl=en">Top 50 Models</button>
+      <button class="tab-btn" data-src="https://datastudio.google.com/embed/reporting/58410ec8-dab4-4654-b87e-b38fde4f569b/page/p_y3woqqub5d?hl=en">By Engine Type</button>
+      <button class="tab-btn" data-src="https://datastudio.google.com/embed/reporting/58410ec8-dab4-4654-b87e-b38fde4f569b/page/p_iothzrub5d?hl=en">By Transmission</button>
+      <button class="tab-btn" data-src="https://datastudio.google.com/embed/reporting/58410ec8-dab4-4654-b87e-b38fde4f569b/page/p_rawfqsub5d?hl=en">By County</button>
+      <button class="tab-btn" data-src="https://datastudio.google.com/embed/reporting/58410ec8-dab4-4654-b87e-b38fde4f569b/page/p_o8ym4tub5d?hl=en">Map View</button>
+    </div>
+    <div class="dashboard-frame">
+      <iframe
+        id="dashboard-iframe"
+        src="https://datastudio.google.com/embed/reporting/58410ec8-dab4-4654-b87e-b38fde4f569b/page/tEnnC?hl=en"
+        frameborder="0"
+        style="border:0"
+        allowfullscreen
+        sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
+      </iframe>
+    </div>
+  </div>
+
+  <section class="feedback-section">
+    <div class="feedback-section-inner">
+      <h2>Help improve this site</h2>
+      <p>CarStats.ie is actively developed, with new dashboards and breakdowns added based on user feedback. Spotted an issue or have an idea for a useful new view?</p>
+      <form id="feedback-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <textarea name="message" placeholder="Your suggestion or feedback..." required></textarea>
+        <div class="feedback-form-row">
+          <input type="email" name="email" placeholder="Your email (optional)">
+          <button type="submit">Send Feedback</button>
+        </div>
+      </form>
+      <p id="feedback-status" class="feedback-status"></p>
+    </div>
+  </section>
+</main>
+
+<footer id="about">
+  Powered by <a href="https://www.linkedin.com/company/yes-analytics" target="_blank" rel="noopener">YeS Analytics</a> (<a href="https://www.linkedin.com/in/eugene-sierikov/" target="_blank" rel="noopener">Yevhen Sierikov</a>)
+</footer>
+
+<div id="cookie-banner" class="cookie-banner">
+  <p>This site uses cookies to understand how visitors use it. No personal data is sold or shared with advertisers. <a href="#" id="cookie-learn-more">Learn more</a></p>
+  <div class="cookie-actions">
+    <button id="cookie-decline" class="cookie-btn cookie-btn-secondary">Decline</button>
+    <button id="cookie-accept" class="cookie-btn cookie-btn-primary">Accept</button>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const banner = document.getElementById('cookie-banner');
+    const consent = localStorage.getItem('cookie_consent');
+
+    if (!consent) {
+      banner.style.display = 'flex';
+    }
+
+    document.getElementById('cookie-accept').addEventListener('click', function() {
+      localStorage.setItem('cookie_consent', 'granted');
+      gtag('consent', 'update', {
+        'analytics_storage': 'granted'
+      });
+      banner.style.display = 'none';
+    });
+
+    document.getElementById('cookie-decline').addEventListener('click', function() {
+      localStorage.setItem('cookie_consent', 'denied');
+      banner.style.display = 'none';
+    });
+  })();
+</script>
+
+<script>
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const dashboardIframe = document.getElementById('dashboard-iframe');
+
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      dashboardIframe.src = btn.getAttribute('data-src');
+
+      if (typeof gtag === 'function') {
+        gtag('event', 'dashboard_tab_click', {
+          'tab_name': btn.textContent.trim()
+        });
+      }
+    });
+  });
+</script>
+
+<script>
+  const feedbackForm = document.getElementById('feedback-form');
+  const feedbackStatus = document.getElementById('feedback-status');
+
+  feedbackForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const data = new FormData(feedbackForm);
+
+    fetch(feedbackForm.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        feedbackStatus.textContent = "Thanks! Your feedback has been sent.";
+        feedbackStatus.className = 'feedback-status success';
+        feedbackForm.reset();
+        if (typeof gtag === 'function') {
+          gtag('event', 'feedback_submitted');
+        }
+      } else {
+        feedbackStatus.textContent = "Something went wrong. Please try again.";
+        feedbackStatus.className = 'feedback-status error';
+      }
+    }).catch(() => {
+      feedbackStatus.textContent = "Something went wrong. Please try again.";
+      feedbackStatus.className = 'feedback-status error';
+    });
+  });
+</script>
+
+</body>
+</html>
