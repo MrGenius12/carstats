@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CarStats.ie — Irish Car Registration Statistics</title>
-<meta name="description" content="Interactive dashboard of new car registrations in Ireland — by make, model, county, fuel type and more.">
+<title>CarStats.ie — Irish Car Registration Statistics & Trends</title>
+<meta name="description" content="Live overview of new car registrations in Ireland: year-to-date totals, top makes and models, fuel type mix, and county-by-county breakdowns.">
 
 <!-- Google tag (gtag.js) with Consent Mode: analytics blocked until user consents -->
 <script>
@@ -24,25 +24,28 @@
 </script>
 
 <!-- Favicon -->
-<link rel="icon" type="image/svg+xml" href="site-assets/favicon.svg">
-<link rel="icon" type="image/png" sizes="32x32" href="site-assets/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="site-assets/favicon-16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="site-assets/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="site-assets/favicon-192.png">
+<link rel="icon" type="image/svg+xml" href="/site-assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/site-assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/site-assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/site-assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/site-assets/favicon-192.png">
 
 <!-- Open Graph / social sharing preview -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="CarStats.ie — Irish Car Registration Statistics">
-<meta property="og:description" content="Interactive dashboard of new car registrations in Ireland — by make, model, county, fuel type and more.">
-<meta property="og:image" content="https://mrgenius12.github.io/carstats/site-assets/og_image.png">
-<meta property="og:url" content="https://mrgenius12.github.io/carstats/">
+<meta property="og:title" content="CarStats.ie — Irish Car Registration Statistics & Trends">
+<meta property="og:description" content="Live overview of new car registrations in Ireland: year-to-date totals, top makes and models, fuel type mix, and county-by-county breakdowns.">
+<meta property="og:image" content="https://carstats.ie/site-assets/og_image.png">
+<meta property="og:url" content="https://carstats.ie/">
 
 <!-- Twitter/X card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="CarStats.ie — Irish Car Registration Statistics">
-<meta name="twitter:description" content="Interactive dashboard of new car registrations in Ireland — by make, model, county, fuel type and more.">
-<meta name="twitter:image" content="https://mrgenius12.github.io/carstats/site-assets/og_image.png">
+<meta name="twitter:title" content="CarStats.ie — Irish Car Registration Statistics & Trends">
+<meta name="twitter:description" content="Live overview of new car registrations in Ireland: year-to-date totals, top makes and models, fuel type mix, and county-by-county breakdowns.">
+<meta name="twitter:image" content="https://carstats.ie/site-assets/og_image.png">
+
+<link rel="canonical" href="https://carstats.ie/">
 <style>
+
   * {
     margin: 0;
     padding: 0;
@@ -534,6 +537,44 @@
       justify-content: flex-end;
     }
   }
+
+
+  .breadcrumb {
+    width: 100%;
+    max-width: 1400px;
+    font-size: 13px;
+    color: #6e7681;
+    margin-bottom: 14px;
+  }
+
+  .breadcrumb a {
+    color: #4f8cff;
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .page-heading {
+    width: 100%;
+    max-width: 1400px;
+    margin-bottom: 16px;
+  }
+
+  .page-heading h1 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 4px;
+  }
+
+  .page-heading p {
+    font-size: 14px;
+    color: #8b949e;
+    max-width: 760px;
+  }
+
 </style>
 </head>
 <body>
@@ -565,20 +606,26 @@
   <div class="header-divider"></div>
   <div class="header-tagline">Irish Car Registration Statistics</div>
   <nav>
-    <a href="#dashboard">Dashboard</a>
-    <a href="#about">About</a>
+    <a href="/#dashboard">Dashboard</a>
+    <a href="/#about">About</a>
   </nav>
 </header>
 
 <main>
   <div class="last-updated" id="last-updated">Data current through <strong id="last-updated-value">June 2026</strong></div>
+
+  <div class="page-heading">
+    <h1>Irish Car Registration Statistics</h1>
+    <p>An overview of new car registrations across Ireland, updated monthly from official SIMI data — covering year-to-date totals, leading makes and models, fuel type share, and registrations by county.</p>
+  </div>
+
   <div class="dashboard-wrapper" id="dashboard">
     <div class="dashboard-tabs">
 
       <div class="tab-group-dropdown">
-        <button class="group-btn active-group" type="button" data-src="https://datastudio.google.com/embed/reporting/58410ec8-dab4-4654-b87e-b38fde4f569b/page/p_fgmz0w2g5d?hl=en">
+        <a class="group-btn active-group" href="/">
           Overview
-        </button>
+        </a>
       </div>
 
       <div class="tab-group-dropdown">
@@ -587,11 +634,11 @@
           <svg class="caret" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <div class="group-menu">
-          <button class="tab-btn" data-src="https://datastudio.google.com/embed/reporting/58410ec8-dab4-4654-b87e-b38fde4f569b/page/tEnnC?hl=en">Registrations Over Time</button>
-          <button class="tab-btn" data-src="https://datastudio.google.com/embed/reporting/58410ec8-dab4-4654-b87e-b38fde4f569b/page/p_snryk1994d?hl=en">Monthly Trends by Year</button>
-          <button class="tab-btn" data-src="https://datastudio.google.com/embed/reporting/58410ec8-dab4-4654-b87e-b38fde4f569b/page/p_rfimzpda5d?hl=en">Cumulative Trends by Year</button>
-          <button class="tab-btn" data-src="https://datastudio.google.com/embed/reporting/58410ec8-dab4-4654-b87e-b38fde4f569b/page/p_phux3u7a5d?hl=en">Same Month by Year</button>
-          <button class="tab-btn" data-src="https://datastudio.google.com/embed/reporting/58410ec8-dab4-4654-b87e-b38fde4f569b/page/p_1r50sh8a5d?hl=en">Cumulative Month by Year</button>
+          <a class="tab-btn" href="/registrations-over-time/">Registrations Over Time</a>
+          <a class="tab-btn" href="/monthly-trends-by-year/">Monthly Trends by Year</a>
+          <a class="tab-btn" href="/cumulative-trends-by-year/">Cumulative Trends by Year</a>
+          <a class="tab-btn" href="/same-month-by-year/">Same Month by Year</a>
+          <a class="tab-btn" href="/cumulative-month-by-year/">Cumulative Month by Year</a>
         </div>
       </div>
 
@@ -601,10 +648,10 @@
           <svg class="caret" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <div class="group-menu">
-          <button class="tab-btn" data-src="https://datastudio.google.com/embed/reporting/58410ec8-dab4-4654-b87e-b38fde4f569b/page/p_uldlljlb5d?hl=en">By Make</button>
-          <button class="tab-btn" data-src="https://datastudio.google.com/embed/reporting/58410ec8-dab4-4654-b87e-b38fde4f569b/page/p_nl1691tb5d?hl=en">Top 30 Models</button>
-          <button class="tab-btn" data-src="https://datastudio.google.com/embed/reporting/58410ec8-dab4-4654-b87e-b38fde4f569b/page/p_9xm0e3um5d?hl=en">Top 10 Makes by Year</button>
-          <button class="tab-btn" data-src="https://datastudio.google.com/embed/reporting/58410ec8-dab4-4654-b87e-b38fde4f569b/page/p_5y0uk0tm5d?hl=en">Top 10 Models by Year</button>
+          <a class="tab-btn" href="/by-make/">By Make</a>
+          <a class="tab-btn" href="/top-30-models/">Top 30 Models</a>
+          <a class="tab-btn" href="/top-10-makes-by-year/">Top 10 Makes by Year</a>
+          <a class="tab-btn" href="/top-10-models-by-year/">Top 10 Models by Year</a>
         </div>
       </div>
 
@@ -614,10 +661,10 @@
           <svg class="caret" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <div class="group-menu">
-          <button class="tab-btn" data-src="https://datastudio.google.com/embed/reporting/58410ec8-dab4-4654-b87e-b38fde4f569b/page/p_y3woqqub5d?hl=en">By Engine Type</button>
-          <button class="tab-btn" data-src="https://datastudio.google.com/embed/reporting/58410ec8-dab4-4654-b87e-b38fde4f569b/page/p_iothzrub5d?hl=en">By Transmission</button>
-          <button class="tab-btn" data-src="https://datastudio.google.com/embed/reporting/58410ec8-dab4-4654-b87e-b38fde4f569b/page/p_z7c3q8um5d?hl=en">Engine Type by Year</button>
-          <button class="tab-btn" data-src="https://datastudio.google.com/embed/reporting/58410ec8-dab4-4654-b87e-b38fde4f569b/page/p_0n4n5xvm5d?hl=en">Transmission Type by Year</button>
+          <a class="tab-btn" href="/by-engine-type/">By Engine Type</a>
+          <a class="tab-btn" href="/by-transmission/">By Transmission</a>
+          <a class="tab-btn" href="/engine-type-by-year/">Engine Type by Year</a>
+          <a class="tab-btn" href="/transmission-type-by-year/">Transmission Type by Year</a>
         </div>
       </div>
 
@@ -627,8 +674,8 @@
           <svg class="caret" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <div class="group-menu">
-          <button class="tab-btn" data-src="https://datastudio.google.com/embed/reporting/58410ec8-dab4-4654-b87e-b38fde4f569b/page/p_rawfqsub5d?hl=en">By County</button>
-          <button class="tab-btn" data-src="https://datastudio.google.com/embed/reporting/58410ec8-dab4-4654-b87e-b38fde4f569b/page/p_o8ym4tub5d?hl=en">Map View</button>
+          <a class="tab-btn" href="/by-county/">By County</a>
+          <a class="tab-btn" href="/map-view/">Map View</a>
         </div>
       </div>
 
@@ -674,6 +721,7 @@
 </div>
 
 <script>
+
   (function() {
     const banner = document.getElementById('cookie-banner');
     const consent = localStorage.getItem('cookie_consent');
@@ -695,9 +743,11 @@
       banner.style.display = 'none';
     });
   })();
+
 </script>
 
 <script>
+
   // Подтягиваем актуальную дату из публичной Google Sheet через JSONP
   const STATUS_SHEET_ID = "1HXwZ0vMkxcaFCLTSGO9rpZBryB98dat3cauaKQcA_Qw";
 
@@ -720,35 +770,12 @@
     console.log('CarStats: failed to load sheet script');
   };
   document.head.appendChild(gvizScript);
+
 </script>
 
 <script>
-  const dashboardIframe = document.getElementById('dashboard-iframe');
+
   const allGroups = document.querySelectorAll('.tab-group-dropdown');
-
-  function setActiveTab(btn) {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.group-btn').forEach(b => b.classList.remove('active-group'));
-
-    if (btn.classList.contains('tab-btn')) {
-      btn.classList.add('active');
-      const parentGroup = btn.closest('.tab-group-dropdown');
-      if (parentGroup) {
-        const groupBtn = parentGroup.querySelector('.group-btn');
-        if (groupBtn) groupBtn.classList.add('active-group');
-      }
-    } else {
-      btn.classList.add('active-group');
-    }
-
-    dashboardIframe.src = btn.getAttribute('data-src');
-
-    if (typeof gtag === 'function') {
-      gtag('event', 'dashboard_tab_click', {
-        'tab_name': btn.textContent.trim()
-      });
-    }
-  }
 
   function closeAllGroups(except) {
     allGroups.forEach(g => {
@@ -763,7 +790,7 @@
   // Only attach this on devices with a real mouse. Touch devices synthesize
   // a mouseenter right before the click event on first tap, which would
   // open the menu via mouseenter and then have that same tap's click
-  // immediately toggle it closed again — requiring a second tap to reopen.
+  // immediately toggle it closed again -- requiring a second tap to reopen.
   const supportsHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
   if (supportsHover) {
@@ -788,15 +815,11 @@
     });
   }
 
-  // Click on a group button: if it has its own data-src (Overview, no submenu), navigate directly.
-  // Otherwise, ensure its dropdown is open (needed for touch devices without hover).
+  // Click on a group button (no href -- Overview link handles its own
+  // navigation natively): toggle its dropdown open/closed for touch devices.
   document.querySelectorAll('.group-btn').forEach(groupBtn => {
+    if (groupBtn.tagName === 'A') return; // Overview link, native navigation
     groupBtn.addEventListener('click', (e) => {
-      if (groupBtn.hasAttribute('data-src')) {
-        setActiveTab(groupBtn);
-        closeAllGroups(null);
-        return;
-      }
       e.stopPropagation();
       const parentGroup = groupBtn.closest('.tab-group-dropdown');
       const isOpen = parentGroup.classList.contains('open');
@@ -805,20 +828,20 @@
     });
   });
 
-  // Click on an individual tab inside a dropdown menu
+  // Clicking a tab link doesn't need special handling -- it's a normal <a>
+  // and navigates on its own. Just stop the click from bubbling to the
+  // document-level "close all" handler before the browser navigates away.
   document.querySelectorAll('.group-menu .tab-btn').forEach(tabBtn => {
-    tabBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      setActiveTab(tabBtn);
-      closeAllGroups(null);
-    });
+    tabBtn.addEventListener('click', (e) => e.stopPropagation());
   });
 
   // Click anywhere outside closes any open dropdown (mobile/touch support)
   document.addEventListener('click', () => closeAllGroups(null));
+
 </script>
 
 <script>
+
   const feedbackForm = document.getElementById('feedback-form');
   const feedbackStatus = document.getElementById('feedback-status');
 
@@ -847,6 +870,7 @@
       feedbackStatus.className = 'feedback-status error';
     });
   });
+
 </script>
 
 </body>
