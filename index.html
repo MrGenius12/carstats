@@ -575,6 +575,27 @@
     max-width: 760px;
   }
 
+  .dashboard-tabs {
+    align-items: center;
+  }
+
+  .dashboard-tabs .last-updated {
+    width: auto;
+    max-width: none;
+    margin-bottom: 0;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 640px) {
+    .dashboard-tabs .last-updated {
+      width: 100%;
+      margin-left: 0;
+      text-align: left;
+      order: 99;
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -612,11 +633,10 @@
 </header>
 
 <main>
-  <div class="last-updated" id="last-updated">Data current through <strong id="last-updated-value">June 2026</strong></div>
 
   <div class="page-heading">
     <h1>Irish Car Registration Statistics</h1>
-    <p>An overview of new car registrations across Ireland, updated monthly from official SIMI data covering year-to-date totals, leading makes and models, fuel type share, and registrations by county.</p>
+    <p>An overview of new car registrations across Ireland, updated monthly from official SIMI data, covering year-to-date totals, leading makes and models, fuel type share, and registrations by county.</p>
   </div>
 
   <div class="dashboard-wrapper" id="dashboard">
@@ -678,6 +698,7 @@
           <a class="tab-btn" href="/map-view/">Map View</a>
         </div>
       </div>
+      <div class="last-updated" id="last-updated">Data current through <strong id="last-updated-value">June 2026</strong></div>
 
     </div>
     <div class="dashboard-frame">
