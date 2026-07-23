@@ -616,6 +616,67 @@
     }
   }
 
+  footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    padding: 22px 32px;
+  }
+
+  .footer-credit {
+    text-align: center;
+  }
+
+  .footer-email {
+    text-align: center;
+  }
+
+  .footer-email a {
+    color: #6e7681;
+  }
+
+  .footer-email a:hover {
+    color: #8b949e;
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: #1c222c;
+    border: 1px solid #2a2f38;
+    color: #8b949e;
+    transition: color 0.2s, background 0.2s, border-color 0.2s;
+  }
+
+  .social-links a:hover {
+    color: #ffffff;
+    background: #242b36;
+    border-color: #4f8cff;
+  }
+
+  .social-links svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  @media (max-width: 768px) {
+    footer {
+      grid-template-columns: 1fr;
+      gap: 14px;
+      text-align: center;
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -751,7 +812,20 @@
 </main>
 
 <footer id="about">
-  Powered by <a href="https://www.linkedin.com/company/yes-analytics" target="_blank" rel="noopener">YeS Analytics</a> (<a href="https://www.linkedin.com/in/eugene-sierikov/" target="_blank" rel="noopener">Yevhen Sierikov</a>)
+  <div class="footer-credit">
+    Powered by <a href="https://www.linkedin.com/company/yes-analytics" target="_blank" rel="noopener">YeS Analytics</a> (<a href="https://www.linkedin.com/in/eugene-sierikov/" target="_blank" rel="noopener">Yevhen Sierikov</a>)
+  </div>
+  <div class="social-links">
+    <a href="https://www.linkedin.com/company/yes-analytics" target="_blank" rel="noopener" aria-label="YeS Analytics on LinkedIn">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+    </a>
+    <a href="https://x.com/CarStatsIE" target="_blank" rel="noopener" aria-label="CarStats.ie on X">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4.5 4.5l15 15M19.5 4.5l-15 15"/></svg>
+    </a>
+  </div>
+  <div class="footer-email">
+    <a href="mailto:info@carstats.ie">info@carstats.ie</a>
+  </div>
 </footer>
 
 <div id="cookie-banner" class="cookie-banner">
