@@ -402,8 +402,6 @@ def video_embed_html(meta):
 def render_post_page(meta):
     canonical = f'{SITE_ROOT}/insights/{meta["slug"]}/'
     date_str = meta['date_obj'].strftime('%d %B %Y')
-    tags = meta.get('tags') or []
-    tags_html = ''.join(f'<span class="post-tag">{t}</span>' for t in tags)
 
     bc_json = breadcrumb_jsonld([
         ("Home", SITE_ROOT + "/"),
@@ -420,7 +418,6 @@ def render_post_page(meta):
     </div>
     <div class="post-meta-row">
       <span class="post-card-date">{date_str}</span>
-      <div class="post-card-tags">{tags_html}</div>
     </div>
     {video_embed_html(meta)}
     <div class="post-article">
@@ -451,7 +448,6 @@ def render_index_page(posts):
         cards = []
         for p in posts:
             date_str = p['date_obj'].strftime('%d %B %Y')
-            tags_html = ''.join(f'<span class="post-tag">{t}</span>' for t in (p.get('tags') or []))
             poster = p.get('video_poster', '')
             media = f'<img src="{poster}" alt="{p["title"]}" loading="lazy">' if poster else ''
             cards.append(f'''<a class="post-card" href="/insights/{p['slug']}/">
@@ -465,7 +461,6 @@ def render_index_page(posts):
         <span class="post-card-date">{date_str}</span>
         <span class="post-card-title">{p['title']}</span>
         <span class="post-card-desc">{p['description']}</span>
-        <div class="post-card-tags">{tags_html}</div>
       </div>
     </a>''')
         grid = f'<div class="insights-grid">\n' + '\n'.join(cards) + '\n</div>'
