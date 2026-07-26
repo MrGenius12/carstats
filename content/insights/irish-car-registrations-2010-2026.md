@@ -3,14 +3,14 @@ title: Irish Car Registrations, 2010 to 2026, in Motion
 slug: irish-car-registrations-2010-2026
 date: 2026-07-25
 description: Sixteen years of Irish new car registrations in 100 seconds -- Toyota and Volkswagen's ongoing fight for first place, and Hyundai's steady climb past Ford into third.
-og_image: /site-assets/insights/irish-car-registrations-2010-2026-cover.png
+og_image:
 video_type: youtube
 video_src: https://www.youtube.com/shorts/tdn-DNvm5FQ
-video_poster: /site-assets/insights/irish-car-registrations-2010-2026-cover.png
+video_poster:
 tags: [Trends, Makes & Models, Engine Type]
 ---
 
-This visualisation tracks new car registrations in Ireland month by month, from January 2010 through June 2026, compressed into a 100-second overview built directly from the same dataset behind the CarStats.ie dashboards.
+This visualisation tracks new car registrations in Ireland month by month, from January 2010 through June 2026, compressed into a 100 second overview built directly from the same dataset behind the CarStats.ie dashboards.
 
 Two patterns stand out across the sixteen-year period.
 
