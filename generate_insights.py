@@ -36,7 +36,7 @@ from datetime import datetime
 
 SITE_ROOT   = "https://carstats.ie"
 CONTENT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "content", "insights")
-OUTPUT_DIR  = os.path.join(os.path.dirname(os.path.abspath(__file__)), "output", "insights")
+OUTPUT_DIR  = os.path.join(os.path.dirname(os.path.abspath(__file__)), "insights")
 
 # ── Shared chrome (header / nav / footer / cookie banner) ──────────────────
 # Kept in one place so both the list page and post pages stay in sync with
