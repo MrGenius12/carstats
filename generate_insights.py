@@ -92,6 +92,8 @@ footer {
   text-align:center; color:#6e7681; font-size:13px; border-top:1px solid #2a2f38;
 }
 .footer-credit { text-align:center; }
+.footer-credit a { color:#6e7681; }
+.footer-credit a:hover { color:#8b949e; }
 .footer-email a { color:#6e7681; }
 .footer-email a:hover { color:#8b949e; }
 .social-links { display:flex; justify-content:center; gap:10px; }
@@ -267,7 +269,12 @@ FOOTER_HTML = '''<footer id="about">
 
 
 def page_shell(*, title, description, canonical, og_image, body, breadcrumb_jsonld="", extra_head=""):
-    og_image_tag = f'https://carstats.ie{og_image}' if og_image else 'https://carstats.ie/site-assets/og_image.png'
+    if og_image and og_image.startswith('http'):
+        og_image_tag = og_image
+    elif og_image:
+        og_image_tag = f'https://carstats.ie{og_image}'
+    else:
+        og_image_tag = 'https://carstats.ie/site-assets/og_image.png'
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -320,6 +327,14 @@ def slugify(text):
     return re.sub(r'[^a-z0-9]+', '-', text.lower()).strip('-')
 
 
+def youtube_video_id(src):
+    if 'shorts/' in src:
+        return src.split('shorts/')[-1].split('?')[0].split('/')[0]
+    if 'youtube' in src or 'youtu.be' in src:
+        return src.split('v=')[-1].split('/')[-1].split('&')[0]
+    return src  # assume a bare video ID was given
+
+
 def load_posts():
     posts = []
     if not os.path.isdir(CONTENT_DIR):
@@ -335,6 +350,12 @@ def load_posts():
         if missing:
             print(f"  ⚠ Skipping {fname}: missing {missing}")
             continue
+        # Auto-derive a poster/thumbnail from YouTube if none was supplied,
+        # so a post isn't left with a broken image just because no custom
+        # thumbnail was made yet.
+        if meta.get('video_type') == 'youtube' and not meta.get('video_poster'):
+            vid = youtube_video_id(meta.get('video_src', ''))
+            meta['video_poster'] = f'https://img.youtube.com/vi/{vid}/hqdefault.jpg'
         meta['body_html'] = md.markdown(post.content, extensions=['extra'])
         meta['date_obj'] = datetime.strptime(str(meta['date']), '%Y-%m-%d')
         posts.append(meta)
@@ -347,12 +368,7 @@ def video_embed_html(meta):
     src = meta.get('video_src', '')
     poster = meta.get('video_poster', '')
     if vtype == 'youtube':
-        if 'shorts/' in src:
-            vid = src.split('shorts/')[-1].split('?')[0].split('/')[0]
-        elif 'youtube' in src or 'youtu.be' in src:
-            vid = src.split('v=')[-1].split('/')[-1].split('&')[0]
-        else:
-            vid = src
+        vid = youtube_video_id(src)
         orientation = meta.get('video_orientation') or ('vertical' if 'shorts/' in src else 'horizontal')
         wrapper_class = 'post-video yt-facade' + (' yt-vertical' if orientation == 'vertical' else '')
         title_attr = meta['title'].replace('"', '&quot;')
@@ -461,7 +477,7 @@ def render_index_page(posts):
   <div class="breadcrumb"><a href="/">Home</a> / Insights</div>
   <div class="page-heading">
     <h1>Insights</h1>
-    <p>Commentary, visualizations, and short write-ups built on top of the CarStats.ie dataset.</p>
+    <p>Commentary, visualisations, and short write-ups built on top of the CarStats.ie dataset.</p>
   </div>
   {grid}
 </main>
@@ -469,7 +485,7 @@ def render_index_page(posts):
 
     return page_shell(
         title="Insights — CarStats.ie",
-        description="Commentary, visualizations, and short write-ups on Irish car registration trends, built on the CarStats.ie dataset.",
+        description="Commentary, visualisations, and short write-ups on Irish car registration trends, built on the CarStats.ie dataset.",
         canonical=canonical,
         og_image="/site-assets/og_image.png",
         body=body,
