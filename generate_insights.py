@@ -38,7 +38,7 @@ SITE_ROOT   = "https://carstats.ie"
 CONTENT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "content", "insights")
 OUTPUT_DIR  = os.path.join(os.path.dirname(os.path.abspath(__file__)), "insights")
 
-# ── Shared chrome (header / nav / footer / cookie banner) ──────────────────
+# ── Shared chrome (header / nav / footer / cookie banner) ───────────────────
 # Kept in one place so both the list page and post pages stay in sync with
 # the rest of the site. If generate.py already holds a shared template for
 # this, swap these strings out for that template instead of duplicating.
@@ -248,6 +248,7 @@ def header_html(active="insights"):
   <nav>
     <a href="/#dashboard"{cls('dashboard')}>Dashboard</a>
     <a href="/insights/"{cls('insights')}>Insights</a>
+    <a href="/car-check-comparison/"{cls('car-check')}>Car Check Tools</a>
     <a href="/#about"{cls('about')}>About</a>
   </nav>
 </header>'''
@@ -526,3 +527,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
