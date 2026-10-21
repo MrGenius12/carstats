@@ -248,7 +248,7 @@ def header_html(active="insights"):
   <nav>
     <a href="/#dashboard"{cls('dashboard')}>Dashboard</a>
     <a href="/insights/"{cls('insights')}>Insights</a>
-    <a href="/car-check-comparison/"{cls('car-check')}>Car Check Tools</a>
+    <a href="/buying-tools/"{cls('buying-tools')}>Buying Tools</a>
     <a href="/#about"{cls('about')}>About</a>
   </nav>
 </header>'''
