@@ -234,9 +234,52 @@ GA_SNIPPET = '''
 '''
 
 
+NAV_DD_CSS = '''  /* nav-dd */
+  .nav-dd { position: relative; display: inline-flex; }
+  .nav-dd-toggle { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; }
+  .nav-dd-chev { width: 12px; height: 12px; transition: transform 0.2s; }
+  .nav-dd.open .nav-dd-chev { transform: rotate(180deg); }
+  .nav-dd-menu {
+    display: none; position: absolute; top: 100%; right: 0; z-index: 900;
+    padding-top: 10px; min-width: 200px;
+  }
+  .nav-dd-menu::before {
+    content: ""; position: absolute; inset: 10px 0 0 0;
+    background: #161b22; border: 1px solid #2a2f38; border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  }
+  .nav-dd-menu a {
+    position: relative; display: block; padding: 10px 16px;
+    color: #c9d1d9; white-space: nowrap; font-size: 14px;
+  }
+  .nav-dd-menu a:first-child { margin-top: 6px; }
+  .nav-dd-menu a:last-child { margin-bottom: 6px; }
+  .nav-dd-menu a:hover { color: #ffffff; background: #1c222c; }
+  .nav-dd.open .nav-dd-menu { display: block; }
+  @media (hover: hover) { .nav-dd:hover .nav-dd-menu { display: block; } }'''
+
+NAV_DD_JS = '''<script id="nav-dd-js">
+(function() {
+  var dd = document.querySelector('.nav-dd');
+  if (!dd) return;
+  var toggle = dd.querySelector('.nav-dd-toggle');
+  var canHover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
+  function setOpen(v) { dd.classList.toggle('open', v); toggle.setAttribute('aria-expanded', v ? 'true' : 'false'); }
+  toggle.addEventListener('click', function(e) {
+    if (canHover) return;
+    e.preventDefault();
+    setOpen(!dd.classList.contains('open'));
+  });
+  document.addEventListener('click', function(e) { if (!dd.contains(e.target)) setOpen(false); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') setOpen(false); });
+})();
+</script>'''
+
+
 def header_html(active="insights"):
     def cls(name):
         return ' class="active-link"' if name == active else ''
+    dd_active = ' active-link' if active == 'buying-tools' else ''
     return f'''<header>
   <div class="logo">
     <a href="/" aria-label="CarStats.ie — Home" style="display:block; line-height:0;">
@@ -248,7 +291,13 @@ def header_html(active="insights"):
   <nav>
     <a href="/#dashboard"{cls('dashboard')}>Dashboard</a>
     <a href="/insights/"{cls('insights')}>Insights</a>
-    <a href="/buying-tools/"{cls('buying-tools')}>Buying Tools</a>
+    <div class="nav-dd">
+      <a href="/buying-tools/" class="nav-dd-toggle{dd_active}" aria-haspopup="true" aria-expanded="false">Buying Tools <svg class="nav-dd-chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="nav-dd-menu">
+        <a href="/where-to-buy-a-car/">Where to Buy a Car</a>
+        <a href="/car-check-comparison/">Car Check Tools</a>
+      </div>
+    </div>
     <a href="/#about"{cls('about')}>About</a>
   </nav>
 </header>'''
@@ -321,12 +370,14 @@ def page_shell(*, title, description, canonical, og_image, body, breadcrumb_json
 <style>
 {SHARED_STYLE}
 {COOKIE_BANNER_CSS}
+{NAV_DD_CSS}
 </style>
 {extra_head}
 </head>
 <body>
 {body}
 {COOKIE_BANNER_HTML}
+{NAV_DD_JS}
 </body>
 </html>'''
 
