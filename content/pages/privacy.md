@@ -9,7 +9,7 @@ CarStats.ie is a free public website with statistics on new and imported car reg
 
 ## Who is responsible
 
-CarStats.ie is operated by YeS Analytics (Yevhen Sierikov), Co. Wexford, Ireland. For any question about privacy or this policy, or to exercise any of the rights below, contact **[info@carstats.ie](mailto:info@carstats.ie)**.
+CarStats.ie is operated by YeS Analytics. For any question about privacy or this policy, or to exercise any of the rights below, contact **[info@carstats.ie](mailto:info@carstats.ie)**.
 
 ## What is collected and why
 
