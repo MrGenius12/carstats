@@ -174,7 +174,7 @@ footer {
 
 COOKIE_BANNER_HTML = '''
 <div id="cookie-banner" class="cookie-banner">
-  <p>This site uses cookies to understand how visitors use it. No personal data is sold or shared with advertisers. <a href="#" id="cookie-learn-more">Learn more</a></p>
+  <p>This site uses cookies to understand how visitors use it. No personal data is sold or shared with advertisers. <a href="/privacy/" id="cookie-learn-more">Learn more</a></p>
   <div class="cookie-actions">
     <button id="cookie-decline" class="cookie-btn cookie-btn-secondary">Decline</button>
     <button id="cookie-accept" class="cookie-btn cookie-btn-primary">Accept</button>
@@ -333,7 +333,7 @@ FOOTER_HTML = '''<footer id="about">
     </a>
   </div>
   <div class="footer-email">
-    <a href="mailto:info@carstats.ie">info@carstats.ie</a>
+    <a href="mailto:info@carstats.ie">info@carstats.ie</a> · <a href="/privacy/">Privacy</a>
   </div>
 </footer>'''
 

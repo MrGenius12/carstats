@@ -25,6 +25,7 @@ SECTION_RULES = [
     ('/guides/', 'monthly', '0.7', True),
     ('/insights/', 'monthly', '0.6', False),  # individual posts
     ('/guides/', 'monthly', '0.6', False),
+    ('/privacy/', 'yearly', '0.3', True),
     ('/buying-tools/', 'monthly', '0.7', True),
     ('/car-check-comparison/', 'monthly', '0.7', True),
     ('/where-to-buy-a-car/', 'monthly', '0.7', True),
