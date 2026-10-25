@@ -76,6 +76,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://carstats.ie/privacy/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
     <loc>https://carstats.ie/registrations-over-time/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
