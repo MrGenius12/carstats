@@ -51,20 +51,19 @@ The letter (or letters) in the middle of the plate identifies the local authorit
 
 | Code | County | Code | County |
 |---|---|---|---|
-| C | Cork | LH | Louth |
-| CE | Clare | LM | Leitrim |
-| CN | Cavan | LS | Laois |
-| CW | Carlow | MH | Meath |
-| D | Dublin | MN | Monaghan |
-| DL | Donegal | MO | Mayo |
-| G | Galway | OY | Offaly |
-| KE | Kildare | RN | Roscommon |
-| KK | Kilkenny | SO | Sligo |
-| KY | Kerry | T | Tipperary |
-| L | Limerick | W | Waterford |
-| LD | Longford | WH | Westmeath |
-| | | WW | Wicklow |
-| | | WX | Wexford |
+| C | Cork | LM | Leitrim |
+| CE | Clare | LS | Laois |
+| CN | Cavan | MH | Meath |
+| CW | Carlow | MN | Monaghan |
+| D | Dublin | MO | Mayo |
+| DL | Donegal | OY | Offaly |
+| G | Galway | RN | Roscommon |
+| KE | Kildare | SO | Sligo |
+| KK | Kilkenny | T | Tipperary |
+| KY | Kerry | W | Waterford |
+| L | Limerick | WH | Westmeath |
+| LD | Longford | WW | Wicklow |
+| LH | Louth | WX | Wexford |
 
 Most two-letter codes are simply the first and last letters of the county's English-language name: Sligo becomes **SO** and Clare becomes **CE**, for instance.
 
