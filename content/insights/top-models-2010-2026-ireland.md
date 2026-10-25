@@ -4,7 +4,7 @@ slug: top-models-2010-2026-ireland
 date: 2026-08-13
 description: Sixteen years of Ireland's best-selling car model as a bar chart race -- the Volkswagen Golf's nine-year run at the top, and the Hyundai Tucson's takeover in 2023.
 video_type: youtube
-video_src: https://youtu.be/ctLOQd4eFgE
+video_src: https://youtu.be/5-qUglG21hE
 ---
 
 This bar chart race tracks Ireland's best-selling car model each year, from 2010 through July 2026, built from the same registration data behind the CarStats.ie dashboards.

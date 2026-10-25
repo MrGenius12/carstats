@@ -6,27 +6,27 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://carstats.ie/registrations-over-time/</loc>
+    <loc>https://carstats.ie/insights/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carstats.ie/guides/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://carstats.ie/buying-tools/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://carstats.ie/by-county/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://carstats.ie/monthly-trends-by-year/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://carstats.ie/cumulative-trends-by-year/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://carstats.ie/same-month-by-year/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://carstats.ie/cumulative-month-by-year/</loc>
+    <loc>https://carstats.ie/by-engine-type/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -36,7 +36,52 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://carstats.ie/top-30-models/</loc>
+    <loc>https://carstats.ie/by-transmission/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carstats.ie/car-check-comparison/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://carstats.ie/cumulative-month-by-year/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carstats.ie/cumulative-trends-by-year/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carstats.ie/engine-type-by-county/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carstats.ie/engine-type-by-year/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carstats.ie/map-view/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carstats.ie/monthly-trends-by-year/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carstats.ie/registrations-over-time/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carstats.ie/same-month-by-year/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -51,17 +96,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://carstats.ie/by-engine-type/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://carstats.ie/by-transmission/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://carstats.ie/engine-type-by-year/</loc>
+    <loc>https://carstats.ie/top-30-models/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -71,34 +106,14 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://carstats.ie/by-county/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://carstats.ie/map-view/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://carstats.ie/buying-tools/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://carstats.ie/car-check-comparison/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://carstats.ie/where-to-buy-a-car/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://carstats.ie/insights/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://carstats.ie/insights/irish-car-imports-by-make-2010-2026/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://carstats.ie/insights/irish-car-registrations-2010-2026/</loc>
@@ -106,7 +121,22 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://carstats.ie/insights/irish-ev-registrations-by-make-2010-2026/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://carstats.ie/insights/top-models-2010-2026-ireland/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://carstats.ie/insights/volkswagen-registrations-by-model-2010-2026/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://carstats.ie/guides/registration-plates-explained/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

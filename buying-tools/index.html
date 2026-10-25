@@ -259,6 +259,7 @@
   .tool-card span { font-size: 13px; font-weight: 600; color: #4f8cff; margin-top: auto; }
 
 
+  /* nav-wrap */ nav a, .nav-dd-toggle { white-space: nowrap; } @media (max-width: 640px) { nav { flex-wrap: wrap; row-gap: 8px; } }
   /* nav-dd */
   .nav-dd { position: relative; display: inline-flex; }
   .nav-dd-toggle { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; }
@@ -315,6 +316,7 @@
   <nav>
     <a href="/#dashboard">Dashboard</a>
     <a href="/insights/">Insights</a>
+    <a href="/guides/">Guides</a>
     <div class="nav-dd">
       <a href="/buying-tools/" class="nav-dd-toggle active-link" aria-haspopup="true" aria-expanded="false">Buying Tools <svg class="nav-dd-chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <div class="nav-dd-menu">

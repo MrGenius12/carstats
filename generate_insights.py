@@ -234,7 +234,8 @@ GA_SNIPPET = '''
 '''
 
 
-NAV_DD_CSS = '''  /* nav-dd */
+NAV_DD_CSS = '''  /* nav-wrap */ nav a, .nav-dd-toggle { white-space: nowrap; } @media (max-width: 640px) { nav { flex-wrap: wrap; row-gap: 8px; } }
+  /* nav-dd */
   .nav-dd { position: relative; display: inline-flex; }
   .nav-dd-toggle { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; }
   .nav-dd-chev { width: 12px; height: 12px; transition: transform 0.2s; }
@@ -291,6 +292,7 @@ def header_html(active="insights"):
   <nav>
     <a href="/#dashboard"{cls('dashboard')}>Dashboard</a>
     <a href="/insights/"{cls('insights')}>Insights</a>
+    <a href="/guides/"{cls('guides')}>Guides</a>
     <div class="nav-dd">
       <a href="/buying-tools/" class="nav-dd-toggle{dd_active}" aria-haspopup="true" aria-expanded="false">Buying Tools <svg class="nav-dd-chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <div class="nav-dd-menu">
@@ -499,7 +501,7 @@ def render_post_page(meta):
 {FOOTER_HTML}'''
 
     return page_shell(
-        title=f"{meta['title']} — CarStats.ie Insights",
+        title=f"{meta['title']} | CarStats.ie Insights",
         description=meta['description'],
         canonical=canonical,
         og_image=meta.get('og_image') or meta.get('video_poster'),
@@ -550,7 +552,7 @@ def render_index_page(posts):
 {FOOTER_HTML}'''
 
     return page_shell(
-        title="Insights — CarStats.ie",
+        title="Insights | CarStats.ie",
         description="Commentary, visualisations, and short write-ups on Irish car registration trends, built on the CarStats.ie dataset.",
         canonical=canonical,
         og_image="/site-assets/og_image.png",
