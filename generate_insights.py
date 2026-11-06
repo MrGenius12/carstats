@@ -234,7 +234,8 @@ GA_SNIPPET = '''
 '''
 
 
-NAV_DD_CSS = '''  /* nav-wrap */ nav a, .nav-dd-toggle { white-space: nowrap; } @media (max-width: 640px) { nav { flex-wrap: wrap; row-gap: 8px; } }
+NAV_DD_CSS = '''  /* sticky-header */ @media (min-width: 641px) { header { position: sticky; top: 0; z-index: 100; } html { scroll-padding-top: 96px; } }
+  /* nav-wrap */ nav a, .nav-dd-toggle { white-space: nowrap; } @media (max-width: 640px) { nav { flex-wrap: wrap; row-gap: 8px; } }
   /* nav-dd */
   .nav-dd { position: relative; display: inline-flex; }
   .nav-dd-toggle { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; }
