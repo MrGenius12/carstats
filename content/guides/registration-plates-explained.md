@@ -1,8 +1,9 @@
 ---
 title: How Irish Registration Plates Work
+seo_title: "Irish Reg Plates Explained: {{CURRENT_PLATE}}, {{NEXT_PLATE}} & County Codes"
 slug: registration-plates-explained
-date: 2026-10-25
-description: A plain-English guide to how Irish car registration plates are formatted, including the county code system and why imported cars often carry an older-looking plate.
+date: 2026-11-17
+description: "When does the {{NEXT_PLATE}} reg start, and what do TS, TN, OY or WH mean on an Irish plate? Plate format, county codes and imports explained."
 tags:
   - registration plates
   - imports
@@ -13,6 +14,15 @@ og_image: /site-assets/og_image.png
 Every car registered in Ireland carries a plate built from three parts: a year identifier, a county code, and a sequence number. The format looks simple, but one detail catches out almost every buyer of an imported car. The plate is **not** based on the year the car arrived in Ireland, or even the year it was built. It is based on the date the car was **first registered anywhere in the world**.
 
 This guide sets out how the format works, how the county codes are assigned, and how imported vehicles are plated, which is the part that causes most confusion.
+
+## Current and next plate: {{CURRENT_PLATE}} and {{NEXT_PLATE}}
+
+| Plate | Period |
+|---|---|
+| **{{CURRENT_PLATE}}** (current) | {{CURRENT_START}} to {{CURRENT_END}} |
+| **{{NEXT_PLATE}}** (next) | {{NEXT_START}} to {{NEXT_END}} |
+
+New cars first registered in Ireland today carry the **{{CURRENT_PLATE}}** plate. The **{{NEXT_PLATE}}** plate starts on **{{NEXT_START}}**. A new plate period always starts on 1 January or 1 July.
 
 ## The format, before and after 2013
 
@@ -70,6 +80,14 @@ Most two-letter codes are simply the first and last letters of the county's Engl
 Limerick, Tipperary and Waterford each used two separate codes until the end of 2013: **L** and **LK** for Limerick City and County, **TN** and **TS** for the North and South Ridings of Tipperary, and **W** and **WD** for Waterford City and County. From 1 January 2014 each county has a single code (**L**, **T** and **W**). Older plates with the previous codes remain valid and are not reissued.
 
 ## FAQ
+
+### When does the {{NEXT_PLATE}} reg start?
+
+On {{NEXT_START}}. Cars first registered from that date until {{NEXT_END}} carry the {{NEXT_PLATE}} plate.
+
+### When did the {{CURRENT_PLATE}} reg start?
+
+On {{CURRENT_START}}. It covers cars first registered up to {{CURRENT_END}}, after which the {{NEXT_PLATE}} plate takes over.
 
 ### Does an Irish plate show the car's manufacture year?
 

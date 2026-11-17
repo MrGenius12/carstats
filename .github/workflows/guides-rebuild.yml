@@ -1,0 +1,43 @@
+name: Rebuild guides (new plate period)
+
+# Irish plates change on 1 January and 1 July (e.g. 262 -> 271).
+# The plates guide fills in the current and next plate at build time,
+# so it is rebuilt automatically when each new period starts.
+
+on:
+  schedule:
+    # 00:20 UTC on 1 January and 1 July
+    - cron: "20 0 1 1,7 *"
+  workflow_dispatch: {}   # manual run from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install python-frontmatter markdown
+
+      - name: Rebuild guides and sitemap
+        run: |
+          python generate_guides.py
+          python update_sitemap.py
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add guides sitemap.xml
+          git diff --staged --quiet || git commit -m "Rebuild guides for new plate period"
+          git pull --rebase
+          git push

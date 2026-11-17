@@ -136,6 +136,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://carstats.ie/insights/toyota-registrations-by-model-2010-2026/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://carstats.ie/insights/volkswagen-registrations-by-model-2010-2026/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

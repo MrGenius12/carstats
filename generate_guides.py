@@ -22,12 +22,34 @@ Content:
     description  (required) meta description / og:description / card text
     tags         optional list of short tags shown on the card
     og_image     optional og:image (defaults to the site image)
+    seo_title    optional <title> for search results (used as-is, no suffix);
+                 defaults to "<title> | CarStats.ie Guides"
 
     Body is Markdown (tables, headings, lists supported).
+
+Plate tokens:
+    seo_title, description and the body may use these tokens. They are filled
+    in at build time from today's date (Europe/Dublin), so the page stays
+    current as long as it is rebuilt when a new plate period starts
+    (1 January and 1 July). The workflow .github/workflows/guides-rebuild.yml
+    does that automatically.
+
+    {{CURRENT_PLATE}}   e.g. 262
+    {{CURRENT_START}}   e.g. 1 July 2026
+    {{CURRENT_END}}     e.g. 31 December 2026
+    {{NEXT_PLATE}}      e.g. 271
+    {{NEXT_START}}      e.g. 1 January 2027
+    {{NEXT_END}}        e.g. 30 June 2027
+    {{PREV_PLATE}}      e.g. 261
+
+    A guide that uses any token shows "Last updated" as the later of its
+    frontmatter date and the start of the current plate period.
 """
 
 import os
-from datetime import datetime
+import re
+from datetime import date, datetime
+from zoneinfo import ZoneInfo
 
 import frontmatter
 import markdown as md
@@ -85,10 +107,47 @@ GUIDES_CSS = '''<style>
 </style>'''
 
 
+def _fmt(d):
+    return f"{d.day} {d.strftime('%B %Y')}"
+
+
+def plate_periods(today=None):
+    """Current, next and previous Irish plate periods for a given date."""
+    today = today or datetime.now(ZoneInfo("Europe/Dublin")).date()
+
+    def period(year, half):
+        start = date(year, 1, 1) if half == 1 else date(year, 7, 1)
+        end = date(year, 6, 30) if half == 1 else date(year, 12, 31)
+        return f"{year % 100:02d}{half}", start, end
+
+    y, h = today.year, (1 if today.month <= 6 else 2)
+    cur = period(y, h)
+    nxt = period(y, 2) if h == 1 else period(y + 1, 1)
+    prev = period(y - 1, 2) if h == 1 else period(y, 1)
+    tokens = {
+        "CURRENT_PLATE": cur[0], "CURRENT_START": _fmt(cur[1]), "CURRENT_END": _fmt(cur[2]),
+        "NEXT_PLATE": nxt[0], "NEXT_START": _fmt(nxt[1]), "NEXT_END": _fmt(nxt[2]),
+        "PREV_PLATE": prev[0],
+    }
+    return tokens, cur[1]
+
+
+TOKEN_RE = re.compile(r"\{\{([A-Z_]+)\}\}")
+
+
+def fill_tokens(text, tokens):
+    def sub(m):
+        if m.group(1) not in tokens:
+            raise KeyError(f"Unknown token {{{{{m.group(1)}}}}}")
+        return tokens[m.group(1)]
+    return TOKEN_RE.sub(sub, text)
+
+
 def load_guides():
     guides = []
     if not os.path.isdir(CONTENT_DIR):
         return guides
+    tokens, period_start = plate_periods()
     for fname in sorted(os.listdir(CONTENT_DIR)):
         if not fname.endswith('.md'):
             continue
@@ -98,11 +157,18 @@ def load_guides():
         if missing:
             print(f"  ! Skipping {fname}: missing {missing}")
             continue
-        html = md.markdown(post.content, extensions=['extra'])
+        uses_tokens = any(TOKEN_RE.search(str(x or '')) for x in
+                          (post.content, meta.get('seo_title'), meta.get('description')))
+        for k in ('seo_title', 'description'):
+            if meta.get(k):
+                meta[k] = fill_tokens(str(meta[k]), tokens)
+        html = md.markdown(fill_tokens(post.content, tokens), extensions=['extra'])
         # Wrap tables so they scroll horizontally on narrow screens
         html = html.replace('<table>', '<div class="table-scroll"><table>').replace('</table>', '</table></div>')
         meta['body_html'] = html
         meta['date_obj'] = datetime.strptime(str(meta['date']), '%Y-%m-%d')
+        if uses_tokens:
+            meta['date_obj'] = max(meta['date_obj'], datetime.combine(period_start, datetime.min.time()))
         guides.append(meta)
     guides.sort(key=lambda g: g['date_obj'], reverse=True)
     return guides
@@ -138,7 +204,7 @@ def render_guide_page(meta):
 {FOOTER_HTML}'''
 
     return page_shell(
-        title=f"{meta['title']} | CarStats.ie Guides",
+        title=meta.get('seo_title') or f"{meta['title']} | CarStats.ie Guides",
         description=meta['description'],
         canonical=canonical,
         og_image=meta.get('og_image') or '/site-assets/og_image.png',
