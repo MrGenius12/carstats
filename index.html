@@ -326,6 +326,19 @@
     }
   }
 
+  .popular-links { width: 100%; max-width: 1200px; margin-top: 40px; }
+  .popular-links h2 { font-size: 17px; font-weight: 600; color: #fff; margin-bottom: 14px; }
+  .popular-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 16px; }
+  .popular-card {
+    background: #161b22; border: 1px solid #2a2f38; border-radius: 12px; padding: 18px 20px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: border-color .2s, transform .15s;
+  }
+  .popular-card:hover { border-color: #4f8cff; transform: translateY(-2px); }
+  .popular-card-label { font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #4f8cff; }
+  .popular-card-title { font-size: 16px; font-weight: 600; color: #fff; line-height: 1.35; }
+  .popular-card-desc { font-size: 13px; color: #8b949e; line-height: 1.55; }
+
   .feedback-section {
     width: 100%;
     max-width: 640px;
@@ -809,6 +822,27 @@
       </iframe>
     </div>
   </div>
+
+  <section class="popular-links">
+    <h2>Guides and buying tools</h2>
+    <div class="popular-grid">
+      <a class="popular-card" href="/guides/registration-plates-explained/">
+        <span class="popular-card-label">Guide</span>
+        <span class="popular-card-title">Irish registration plates explained</span>
+        <span class="popular-card-desc">What the year and county codes on an Irish plate mean, when the next plate starts, and how imported cars are plated.</span>
+      </a>
+      <a class="popular-card" href="/where-to-buy-a-car/">
+        <span class="popular-card-label">Buying tools</span>
+        <span class="popular-card-title">Where to buy a car in Ireland</span>
+        <span class="popular-card-desc">Irish car marketplaces compared, including alternatives to CarsIreland and Carzone.</span>
+      </a>
+      <a class="popular-card" href="/car-check-comparison/">
+        <span class="popular-card-label">Buying tools</span>
+        <span class="popular-card-title">Car tax and NCT check</span>
+        <span class="popular-card-desc">Free tools for checking motor tax, NCT status and vehicle details by registration number.</span>
+      </a>
+    </div>
+  </section>
 
   <section class="feedback-section">
     <div class="feedback-section-inner">
