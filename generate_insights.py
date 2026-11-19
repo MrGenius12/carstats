@@ -308,7 +308,7 @@ def header_html(active="insights"):
 
 FOOTER_HTML = '''<footer id="about">
   <div class="footer-credit">
-    Powered by <a href="https://www.linkedin.com/company/yes-analytics" target="_blank" rel="noopener">YeS Analytics</a> (<a href="https://www.linkedin.com/in/eugene-sierikov/" target="_blank" rel="noopener">Yevhen Sierikov</a>)
+    Powered by <a href="https://yes-analytics.com/" target="_blank" rel="noopener">YeS Analytics</a> (<a href="https://www.linkedin.com/in/eugene-sierikov/" target="_blank" rel="noopener">Yevhen Sierikov</a>)
   </div>
   <div class="social-links">
     <a href="https://www.linkedin.com/company/yes-analytics" target="_blank" rel="noopener" aria-label="YeS Analytics on LinkedIn">
